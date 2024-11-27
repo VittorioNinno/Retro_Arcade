@@ -1,0 +1,110 @@
+#leaderboardPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #222;
+    color: #fff;
+    border: 2px solid #555;
+    padding: 20px;
+    z-index: 1000;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#leaderboardPopup h2 {
+    text-align: center;
+	font-size : 28px !important;
+}
+
+#leaderboardPopup table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+#leaderboardPopup th, #leaderboardPopup td {
+    border: 1px solid #444;
+    padding: 8px;
+    text-align: center;
+}
+
+#leaderboardPopup button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+	font-weight: bold;
+}
+
+.gold {
+    font-weight: bold;
+    color: #FFD700; /* Oro */
+}
+
+.silver {
+    font-weight: bold;
+    color: #50C878; /* Verde Smeraldo */
+}
+
+.bronze {
+    font-weight: bold;
+    color: #8B4513; /* Marrone Chiaro */
+}
+
+/* Animazione di entrata */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Animazione di uscita */
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+}
+
+/* Stato iniziale nascosto */
+#leaderboardPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #222;
+    color: #fff;
+    border: 2px solid #555;
+    padding: 20px;
+    z-index: 1000;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0; /* Inizia invisibile */
+}
+
+/* Mostra con l'animazione */
+#leaderboardPopup.show {
+    display: block;
+    animation: slideIn 0.3s forwards;
+}
+
+/* Nasconde con l'animazione */
+#leaderboardPopup.hide {
+    animation: slideOut 0.3s forwards;
+}
+

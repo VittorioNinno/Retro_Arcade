@@ -1,0 +1,325 @@
+/* Variabili CSS per una facile personalizzazione */
+
+/* Modalità chiara */
+:root {
+    --background-color: #ffffff; /* Sfondo chiaro */
+    --text-color: #0f0f0f; /* Testo scuro */
+    --header-footer-bg-color: #333333; /* Sfondo scuro per header/footer */
+    --header-footer-text-color: #ffffff; /* Testo chiaro in header/footer */
+    --canvas-background: #fefefe;
+    --snake-color: #008000;
+    --snake-head-color: #0F430F; /* Colore della testa del serpente */
+    --food-color: red;
+    --button-bg-color: #333333;
+    --button-text-color: #ffffff;
+    --button-hover-color: #none;
+    --border-color: #333333;
+    --obstacle-color: #444444; /* Colore degli ostacoli */
+	--obstacle-border-color: #000000; /* Colore del bordo degli ostacoli in modalità chiara */
+    --obstacle-border-width: 2px; /* Spessore del bordo degli ostacoli */
+    --grid-color: rgba(0, 0, 0, 0.1); /* Colore della griglia in modalità chiara */
+
+    /* Colori del toggle switch */
+    --slider-background-color: #666; /* Sfondo dello slider in modalità chiara */
+    --slider-knob-color: #14b814; /* Colore della manopola dello slider */
+    --slider-active-background-color: #999; /* Sfondo dello slider quando attivo in modalità chiara */
+}
+
+/* Modalità scura */
+[data-theme="dark"] {
+    --background-color: #121212; /* Sfondo scuro */
+    --text-color: #fefefe; /* Testo chiaro */
+    --header-footer-bg-color: #000000; /* Sfondo nero per header/footer */
+    --header-footer-text-color: #ffffff; /* Testo chiaro in header/footer */
+    --canvas-background: #1e1e1e;
+    --snake-color: lightgreen;
+    --snake-head-color: limegreen; /* Colore della testa del serpente */
+    --food-color: orange;
+    --button-bg-color: #555555;
+    --button-text-color: #ffffff;
+    --button-hover-color: none;
+    --border-color: #666666;
+	--obstacle-border-color: #333333; /* Colore del bordo degli ostacoli in modalità scura */
+    --obstacle-border-width: 2px; /* Spessore del bordo degli ostacoli */
+    --obstacle-color: darkgray; /* Colore degli ostacoli */
+    --grid-color: rgba(255, 255, 255, 0.1); /* Colore della griglia in modalità scura */
+
+    /* Colori del toggle switch */
+    --slider-background-color: #666; /* Sfondo dello slider in modalità scura */
+    --slider-knob-color: #14b814; /* Colore della manopola dello slider */
+    --slider-active-background-color: #ddd; /* Sfondo dello slider quando attivo in modalità scura */
+}
+
+/* Stili di base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Doto', sans-serif;
+	font-size: 20px;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* Previene lo scrolling */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.5s, color 0.5s; /* Transizione graduale */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: var(--header-footer-bg-color);
+    color: var(--header-footer-text-color);
+    position: relative; /* Necessario per posizionamento assoluto degli elementi interni */
+    flex-shrink: 0;
+    transition: background-color 0.5s, color 0.5s;
+    height: 80px; /* Altezza aumentata */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra il contenuto orizzontalmente */
+    padding: 0 20px;
+}
+
+header .home-button {
+    position: absolute;
+    left: 20px;
+    height: 40px; /* Adatta secondo necessità */
+}
+
+header .switch {
+    position: absolute;
+    right: 20px;
+    height: 34px; /* Mantieni la stessa altezza per allineamento */
+}
+
+header h1 {
+    margin: 0; /* Rimuovi eventuali margini predefiniti */
+    font-size: 50px; /* Adatta secondo necessità */
+}
+
+footer {
+    background-color: var(--header-footer-bg-color);
+    color: var(--header-footer-text-color);
+    text-align: center;
+    padding: 10px;
+    flex-shrink: 0;
+    transition: background-color 0.5s, color 0.5s; /* Transizione graduale */
+}
+
+main {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(5px);
+}
+
+.game-container.visible {
+    opacity: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.game-container.hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+canvas {
+    border: 4px solid var(--border-color);
+    background-color: var(--canvas-background);
+    margin-bottom: 0px;
+    transition: background-color 0.5s, border-color 0.5s; /* Transizione graduale */
+}
+
+.score-container {
+    margin-top: 15px;
+}
+
+.score-container p {
+    font-size: 26px;
+    font-weight: bold;
+    transition: color 0.5s; /* Transizione graduale */
+}
+
+.score-container span{
+	font-size: 26px;
+    font-weight: bold;
+    transition: color 0.5s; /* Transizione graduale */
+}
+
+.game-over-message {
+    font-size: 30px;
+	font-weight: bold;
+    color: #e70000;
+    margin-bottom: 5px;
+    display: none; /* Nascosto di default */
+    text-align: center;
+    transition: color 0.5s; /* Transizione graduale */
+}
+
+#restartButton {
+	font-size: 22px !important;
+	font-weight: bold !important;
+	margin-bottom: 30px;
+    display: none;
+}
+
+#restartButton.visible {
+    display: block;
+}
+
+#restartButton.hidden {
+    display: none;
+}
+
+/* Stile per il toggle switch */
+.switch {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    height: 34px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: var(--slider-background-color);
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: background-color 0.5s; /* Transizione graduale */
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: var(--slider-knob-color);
+    content: "";
+    position: absolute;
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    transition: transform 0.4s, background-color 0.5s; /* Transizione graduale */
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--slider-active-background-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    canvas {
+        width: 100%;
+        height: auto;
+    }
+
+    header h1 {
+        font-size: 20px; /* Riduci la dimensione del testo su schermi piccoli */
+    }
+}
+
+/* Stili per il bottone Home */
+.home-button {
+    display: flex; /* Abilita Flexbox */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra orizzontalmente */
+    padding: 8px 16px; /* Mantieni il padding per uniformità */
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold !important;
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid var(--button-bg-color); /* Assicura un bordo simile agli altri bottoni */
+    height: 40px; /* Assicura un'altezza uniforme */
+    min-width: 80px; /* Imposta una larghezza minima se necessario */
+}
+
+.home-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Stili per la selezione della difficoltà */
+.difficulty-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.difficulty-selection.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.difficulty-selection.hidden {
+    opacity: 0;
+    transform: translateY(-20px); /* Sposta leggermente verso l'alto */
+}
+
+.difficulty-selection h2 {
+    font-size: 42px !important;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    transition: color 0.5s;
+}
+
+.difficulty-selection button {
+    padding: 15px 30px;
+    font-size: 24px !important;
+	font-weight: bold !important;
+    color: var(--button-text-color);
+    background-color: var(--button-bg-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    min-width: 200px;
+    min-height: 50px;
+}
+
+@media (max-width: 600px) {
+    .difficulty-selection button {
+        min-width: 120px;
+        min-height: 40px;
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+}

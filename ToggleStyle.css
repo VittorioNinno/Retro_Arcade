@@ -1,0 +1,120 @@
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--dur: 0.3s;
+	font-size: calc(40px + (80 - 40)*(100vw - 320px)/(2560 - 320));
+}
+
+body, input {
+	color: hsl(0,0%,10%);
+	font: 1em/1.5 sans-serif;
+}
+
+form, .toggle:before, .toggle:after {
+	background: hsl(0,0%,90%);
+}
+form, .toggle {
+	position: relative;
+}
+
+form {
+	position: relative; /* Necessario per il posizionamento assoluto del toggle */
+	width: 100%;
+	height: 100vh;
+}
+
+.curtain, .sr, .toggle:before, .toggle:after {
+	position: absolute;
+}
+
+.curtain, .toggle:before, .toggle:after {
+	transition: transform var(--dur);
+}
+
+.curtain, .toggle:before, .toggle:checked:after  {
+	transition-timing-function: ease-out;
+}
+
+.curtain, .sr {
+	top: 0;
+	left: 0;
+}
+
+.curtain {
+	background: hsl(0,0%,100%);
+	mix-blend-mode: difference;
+	pointer-events: none;
+	width: 100%;
+	height: 100%;
+	transform: scaleY(0); /* Scala verticale */
+	transform-origin: 50% 0; /* Origine in alto al centro */
+	transition: transform var(--dur);
+}
+
+.sr, .toggle {
+	overflow: hidden;
+}
+
+.sr {
+	clip: rect(1px,1px,1px,1px);
+	color: transparent;
+	width: 1px;
+	height: 1px;
+}
+
+.toggle {
+	background: currentColor;
+	border-radius: 0.75em;
+	cursor: pointer;
+	width: 1em; /* Dimensione ridotta */
+	height: 0.5em; /* Proporzione mantenuta */
+	-webkit-appearance: none;
+	appearance: none;
+	-webkit-tap-highlight-color: transparent;
+	position: absolute; /* Posizionamento */
+	top: 0.5rem; /* Distanza dall'alto */
+	right: 0.5rem; /* Distanza dal bordo destro */
+}
+
+.toggle:before, .toggle:after {
+	border-radius: 50%;
+	content: "";
+	display: block;
+	top: 0.05em; /* Ridotto per adattarsi al nuovo toggle */
+	left: 0.08em;
+	width: 0.4em; /* Adattato alle nuove dimensioni */
+	height: 0.4em;
+}
+
+.toggle:before, .toggle:checked:after {
+	transition-delay: 0s;
+}
+
+.toggle:checked:before, .toggle:after {
+	transition-delay: calc(var(--dur) * 0.75);
+	transition-timing-function: cubic-bezier(0.3,1.6,0.5,0.7);
+}
+
+.toggle:before {
+	transform: translateX(-1.5em);
+}
+
+.toggle:checked:before {
+	transform: translateX(0.45em);
+}
+.toggle:checked:after {
+	transform: translateX(1.5em);
+}
+
+.toggle:checked ~ .curtain {
+	transform: scaleY(1); /* Espansione verticale */
+}
+
+.toggle:focus {
+	outline: transparent;
+}

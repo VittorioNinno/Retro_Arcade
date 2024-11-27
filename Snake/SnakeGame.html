@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <title>Snake</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link ai file CSS -->
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="../ButtonStyle.css">
+	<link rel="stylesheet" href="../Leaderboard.css">
+	<!-- Link ai fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Doto&display=swap" rel="stylesheet">
+    <!-- Imposta un'icona per il sito in formato .ico -->
+    <link rel="icon" href="../Icons/Snake.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <!-- Bottone per tornare alla pagina iniziale con effetto Pulse -->
+        <button class="home-button hover-effect offset" onclick="window.location.href='../Index/Index.html'">HOME</button>
+
+        <h1>SNAKE</h1>
+        <!-- Toggle switch per la modalità giorno/notte -->
+        <div class="switch">
+            <label class="theme-switch" for="theme-checkbox">
+                <input type="checkbox" id="theme-checkbox" />
+                <div class="slider round"></div>
+            </label>
+        </div>
+    </header>
+    <main>
+        <!-- Contenitore per la selezione della difficoltà -->
+        <div id="difficultySelection" class="difficulty-selection visible">
+            <h2>SELECT DIFFICULTY</h2>
+            <button class="hover-effect pulse" onclick="startGame('easy')">EASY</button>
+            <button class="hover-effect pulse" onclick="startGame('medium')">MEDIUM</button>
+            <button class="hover-effect pulse" onclick="startGame('hard')">HARD</button>
+        </div>
+        <!-- Contenitore del gioco, inizialmente nascosto -->
+        <div id="gameContainer" class="game-container hidden" style="display: none;">
+            <canvas id="gameCanvas" width="800" height="500" role="img" aria-label="Canvas del gioco Snake"></canvas>
+            <div class="score-container">
+                <p>SCORE: <span id="score">0</span></p>
+            </div>
+            <!-- Messaggio di game over -->
+            <div id="gameOverMessage" class="game-over-message" aria-live="polite"></div>
+            <button id="restartButton" class="hover-effect up" onclick="restartGame()">RESTART</button>
+        </div>
+    </main>    
+    <footer>
+        <p>&copy; 2024 Snake. All rights reserved.</p>
+    </footer>
+	<!-- Leaderboard -->
+    <div id="leaderboardPopup">
+        <h2 id="leaderboardTitle">Leaderboard</h2>
+        <table>
+            <thead>
+				<tr>
+					<th>Position</th>
+					<th>Name</th>
+					<th>Score</th>
+				</tr>
+			</thead>
+            <tbody>
+				<!-- Punteggi inseriti dinamicamente -->
+			</tbody>
+        </table>
+        <button id="closeLeaderboard" class="hover-effect close">CLOSE</button>
+    </div>
+    <!-- Include i file JavaScript -->
+    <script src="../Theme.js"></script>
+	<script src="../Leaderboard.js"></script>
+    <script src="Snake.js"></script>
+	
+</body>
+</html>

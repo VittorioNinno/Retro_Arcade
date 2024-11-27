@@ -1,0 +1,132 @@
+/* Effetto "Fill In" */
+.fill:hover,
+.fill:focus {
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+/* Effetto "Pulse" */
+.pulse:hover, 
+.pulse:focus {
+  animation: pulse 1s forwards;
+  box-shadow: 0 0 0 2em transparent;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--hover); }
+}
+
+/* Effetto "Close" (Ombre da sinistra e destra) */
+.close:hover,
+.close:focus {
+  box-shadow: 
+    inset -3.5em 0 0 0 var(--hover),
+    inset 3.5em 0 0 0 var(--hover);  
+}
+
+/* Effetto "Raise" (Ombra esterna e sollevamento) */
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
+}
+
+/* Effetto "Fill Up" (Ombra interna dal basso) */
+.up:hover,
+.up:focus {
+  box-shadow: inset 0 -3.25em 0 0 var(--hover);
+}
+
+/* Effetto "Slide" (Ombra interna da sinistra) */
+.slide:hover,
+.slide:focus {
+  box-shadow: inset 7em 0 0 0 var(--hover);
+}
+
+/* Effetto "Offset" (Ombre esterne e interne) */
+.offset {  
+  box-shadow: 
+    0.3em 0.3em 0 0 var(--color),
+    inset 0.3em 0.3em 0 0 var(--color);
+}
+
+.offset:hover,
+.offset:focus {
+  box-shadow: 
+    0 0 0 0 var(--hover),
+    inset 6em 3.5em 0 0 var(--hover);
+}
+
+/*=== Impostazione dei Colori per i Bottoni ===*/
+
+/* Utilizziamo le proprietà CSS personalizzate per definire i colori */
+.fill {
+  --color: #14b814;
+  --hover: #00cd00; /* Adjusted hue for hover effect */
+  --text: #ffffff;
+}
+
+.pulse {
+  --color: #14b814;
+  --hover: #00cd00;
+  --text: #14b814;
+}
+
+.close {
+  --color: #14b814;
+  --hover: #00cd00;
+  --text: #ffffff;
+}
+
+.raise {
+  --color: #14b814;
+  --hover: #00cd00;
+  --text: #14b814;
+}
+
+.up {
+  --color: #14b814;
+  --hover: #00cd00;
+  --text: #ffffff;
+}
+
+.slide {
+  --color: #14b814;
+  --hover: #00cd00;
+  --text: #ffffff;
+}
+
+.offset {
+  --color: #14b814;
+  --hover: #00cd00;
+  --text: #ffffff;
+}
+
+/* Stili Base per i Bottoni con Effetti Hover */
+button.hover-effect {  
+  color: var(--color);
+  transition: 0.25s;
+}
+
+button.hover-effect:hover,
+button.hover-effect:focus { 
+  border-color: var(--hover);
+  color: var(--text);
+}
+
+/* Stili Specifici per i Bottoni */
+button.fill,
+button.pulse,
+button.close,
+button.raise,
+button.up,
+button.slide,
+button.offset {
+  background: none;
+  border: 2px solid var(--color);
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  cursor: pointer;
+  border-radius: 5px;
+}
